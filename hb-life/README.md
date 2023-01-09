@@ -26,4 +26,4 @@ The game will then run according to the B3/S23 rule: a cell will be born if it h
 
 Enjoy!
 
-![Game of Life](docs/img/life.png )
+![Game of Life](life.png )
