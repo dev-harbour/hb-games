@@ -20,7 +20,8 @@ The rules of Conway's Game of Life are as follows:
 These rules are applied to each cell in the grid simultaneously, based on the state of its neighbors in the previous generation.
 The game continues to evolve according to these rules until a stable state is reached, or until the player decides to stop the simulation.
 
-Conway's Game of Life is a simple but fascinating game that has inspired many variations and has been the subject of much research and analysis. It is often used as a demonstration of emergent behavior and self-organization in complex systems.
+Conway's Game of Life is a simple but fascinating game that has inspired many variations and has been the subject of much research and analysis.
+It is often used as a demonstration of emergent behavior and self-organization in complex systems.
 
 The Game of Life is a classic computer science game that starts with a welcome screen.
 When you press Enter, you will be taken to the second screen where you can select the initial configuration using your mouse.
