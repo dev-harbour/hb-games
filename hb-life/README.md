@@ -1,6 +1,10 @@
 # hb-life
 
-Cellular automata were originally introduced by [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) and [Stanisław Ulam](https://en.wikipedia.org/wiki/Stanislaw_Ulam) as a possible idealization of biological systems, with the particular purpose of modeling biological self-reproduction. Since then CAs have been reinvented several times under various names such as "cellular spaces," "tessellation automata," "cellular structures," "cellular spaces" and "iterative arrays". During the last two decades CAs have been extensively used as mathematical idealizations of physical systems in which space...
+Cellular automata were originally introduced by [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) and
+[Stanisław Ulam](https://en.wikipedia.org/wiki/Stanislaw_Ulam) as a possible idealization of biological systems, with the
+particular purpose of modeling biological self-reproduction. Since then CAs have been reinvented several times under various
+names such as "cellular spaces," "tessellation automata," "cellular structures," "cellular spaces" and "iterative arrays".
+During the last two decades CAs have been extensively used as mathematical idealizations of physical systems in which space...
 
 Conway's Game of Life is a cellular automaton simulation game that was created by mathematician John Horton Conway in 1970.
 The game is played on a grid of cells, where each cell can be in one of two states: alive or dead.
