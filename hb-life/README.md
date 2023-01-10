@@ -27,7 +27,8 @@ The Game of Life is a classic computer science game that starts with a welcome s
 When you press Enter, you will be taken to the second screen where you can select the initial configuration using your mouse.
 Click the left mouse button to place pieces on the grid and the right mouse button to remove them.
 Once you are satisfied with your configuration, press the space key to start the game.
-The game will then run according to the B3/S23 rule: a cell will be born if it has exactly three neighbors, and a cell will survive if it has exactly two or three eighbors.
+The game will then run according to the B3/S23 rule: a cell will be born if it has exactly three neighbors,
+and a cell will survive if it has exactly two or three eighbors.
 
 Enjoy!
 
