@@ -3,7 +3,7 @@
 This is a collection of games written in Harbour.
 
 ## Text-based game development
-
+<div style="text-align: justify">
 Creating a text-based game in Harbour is a process that typically involves the following steps:
 
 1. Designing the game: The first step in creating a text-based game is to design the game mechanics,
@@ -48,4 +48,5 @@ Creating a text-based game is a challenging but very rewarding process. It requi
 The Harbour programming language offers a powerful set of libraries and functions that can help to make this process easier, but it's important
 to keep in mind that game development takes time, effort and a lot of testing to get it right.
 
+ </div>
 [License.](LICENSE)
