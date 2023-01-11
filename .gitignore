@@ -1,8 +1,9 @@
 # hb-games
-*.exe
 *.bak
+*.exe
 *.hbx
 *.log
+*.zip
+extras
 lib
 tmp
-extras
