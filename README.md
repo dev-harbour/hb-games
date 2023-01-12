@@ -102,7 +102,7 @@ Handling user input is an important aspect of creating a text-based game using t
 <ul>
 <li>
 <p align="justify">
-Keyboard input: One of the most basic ways to handle user input is to use the keyboard. Harbour provides several built-in functions, such as GET and INKEY, that can be used to capture and process keyboard input.
+Keyboard input: One of the most basic ways to handle user input is to use the keyboard. Harbour provides several built-in functions, such as GET and <b>Inkey</b>, that can be used to capture and process keyboard input.
 </p>
 </li>
 
@@ -199,6 +199,8 @@ It's also important to keep in mind that the game loop should be optimized for p
 
 ## Simple examples of text-based games
 
+> - text-based_1.prg
+
 ``` harbour
 #include "inkey.ch"
 
@@ -257,5 +259,117 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
 ```
 
 ![Windows](Text-based-game-development/docs/text-based_1.png )
+
+<p align="justify">
+This code is a simple text-based game written in the Harbour programming language. The game uses an array, <b>aMap</b>, to represent the map of the game world, and assigns characters to different positions on the map to represent different types of locations (e.g. walls represented by "#" and open spaces represented by "." ). The player's position is tracked using the variables <b>nPlayerX</b> and <b>nPlayerY</b>, which are initially set to 2,2.
+</p>
+<p align="justify">
+The game loop is implemented in the while loop, that iterates continuously until the game is over. The game loop calls the function DrawMap, that takes the map, player's x and y position as inputs. Inside the function, the map is looped through, and the characters of the array are printed on the screen using hb_DispOutAt function, using x and y positions as the coordinates for printing. If the current position is the player's position, a special character is printed.
+</p>
+
+<p align="justify">
+The game loop also captures input from the keyboard using the <b>Inkey</b> function, which waits for 1 second for an input. If an input is captured, the program checks if it is an arrow key and updates the player's position accordingly.
+</p>
+
+<p align="justify">
+The game allows the player to move on the map using the arrow keys, and the player character is represented by a special character.
+</p>
+
+> - text-based_2.prg
+
+``` harbour
+#include "inkey.ch"
+
+PROCEDURE Main()
+
+   LOCAL nKey, aMap, nPlayerX, nPlayerY, nLives
+
+   aMap := { ;
+      { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" }, ;
+      { "#", ".", ".", ".", ".", ".", ".", ".", ".", "#" }, ;
+      { "#", ".", "#", "#", ".", "#", "#", ".", ".", "#" }, ;
+      { "#", ".", ".", ".", ".", ".", ".", ".", ".", "#" }, ;
+      { "#", "#", "#", "#", "#", ".", "#", "#", ".", "#" }, ;
+      { "#", ".", ".", ".", ".", ".", "#", ".", ".", "#" }, ;
+      { "#", ".", "#", "#", ".", "#", "#", ".", ".", "#" }, ;
+      { "#", ".", ".", ".", ".", ".", ".", ".", ".", "#" }, ;
+      { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" } }
+
+   nPlayerX := 2
+   nPlayerY := 2
+   nLives := 3
+
+   WHILE( nLives > 0 )
+
+      DrawMap( aMap, nPlayerX, nPlayerY )
+
+      hb_DispOutAt( 20, 1, "Lives: " + Str( nLives ) )
+
+      nKey := Inkey( 1 )
+
+      IF nKey == K_UP
+         IF aMap[ nPlayerY - 1 ][ nPlayerX ] == "#"
+            nLives -= 1
+            hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+         ELSE
+            nPlayerY := nPlayerY - 1
+         ENDIF
+      ELSEIF nKey == K_DOWN
+         IF aMap[ nPlayerY + 1 ][ nPlayerX ] == "#"
+            nLives -= 1
+            hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+         ELSE
+            nPlayerY := nPlayerY + 1
+         ENDIF
+      ELSEIF nKey == K_LEFT
+         IF aMap[ nPlayerY ][ nPlayerX - 1 ] == "#"
+            nLives -= 1
+            hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+         ELSE
+            nPlayerX := nPlayerX - 1
+         ENDIF
+      ELSEIF nKey == K_RIGHT
+         IF aMap[ nPlayerY ][ nPlayerX + 1 ] == "#"
+            nLives -= 1
+            hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+         ELSE
+            nPlayerX := nPlayerX + 1
+         ENDIF
+
+      ENDIF
+   ENDDO
+
+   IF nLives == 0
+      Alert( "Game Over!" )
+   ENDIF
+
+   RETURN
+
+FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
+
+   LOCAL nX, nY
+
+   FOR nY := 1 TO Len( aMap )
+      FOR nX := 1 TO Len( aMap[ nY ] )
+         IF nX == nPlayerX .AND. nY == nPlayerY
+            hb_DispOutAt( nY - 1, nX - 1, "P", 0x22 )
+         ELSE
+            hb_DispOutAt( nY - 1, nX - 1, aMap[ nY ][ nX ], 0x7 )
+         ENDIF
+      NEXT
+   NEXT
+
+   RETURN NIL
+```
+
+![Windows](Text-based-game-development/docs/text-based_2.png )
+
+<p align="justify">
+With this code, the game will display the number of lives that the player has left and it will end the game when the player loses all lives. The player will lose 1 live every time he hits a wall and the game over message will be shown. It's important to note that the code is a simple example of how you could implement a text-based game using Harbour, it has limitations and could be improved to make it more interesting, complex and fun!
+</p>
+
+<p align="justify">
+By enlarging the <b>aMap</b> array, you can create larger and more complex levels for the game, making it more interesting and challenging for the player.
+</p>
 
 ["If you enjoyed this instruction, please support the project by making a donation through Paypal. Your support will help to ensure that this instruction can continue to be developed and updated."](https://www.paypal.me/rafaljopek?locale.x=pl_PL)
