@@ -372,4 +372,9 @@ With this code, the game will display the number of lives that the player has le
 By enlarging the <b>aMap</b> array, you can create larger and more complex levels for the game, making it more interesting and challenging for the player.
 </p>
 
-["If you enjoyed this instruction, please support the project by making a donation through Paypal. Your support will help to ensure that this instruction can continue to be developed and updated."](https://www.paypal.me/rafaljopek?locale.x=pl_PL)
+---
+
+<p>
+<a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
+</p>
+
