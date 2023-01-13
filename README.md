@@ -264,7 +264,7 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
 This code is a simple text-based game written in the Harbour programming language. The game uses an array, <b>aMap</b>, to represent the map of the game world, and assigns characters to different positions on the map to represent different types of locations (e.g. walls represented by "#" and open spaces represented by "." ). The player's position is tracked using the variables <b>nPlayerX</b> and <b>nPlayerY</b>, which are initially set to 2,2.
 </p>
 <p align="justify">
-The game loop is implemented in the while loop, that iterates continuously until the game is over. The game loop calls the function DrawMap, that takes the map, player's x and y position as inputs. Inside the function, the map is looped through, and the characters of the array are printed on the screen using hb_DispOutAt function, using x and y positions as the coordinates for printing. If the current position is the player's position, a special character is printed.
+The game loop is implemented in the while loop, that iterates continuously until the game is over. The game loop calls the function DrawMap, that takes the map, player's x and y position as inputs. Inside the function, the map is looped through, and the characters of the array are printed on the screen using <b>hb_DispOutAt()</b> function, using x and y positions as the coordinates for printing. If the current position is the player's position, a special character is printed.
 </p>
 
 <p align="justify">
@@ -469,7 +469,7 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
 ```
 
 <p align="justify">
-Regarding the <b>DrawMap</b> function, the changes were made to the way the map is displayed. The previous version of the function used <b>hb_DispOutAt</b> to display each element of the map one by one at its corresponding position on the screen. The new version of the function makes use of an <b>IIF</b> statement to check if the current element of the map is a dot <b>(.)</b>, and if it is, it will replace it with a blank space <b>( )</b>. This is done so that the dots are not permanently removed from the map after the player has passed over them.
+Regarding the <b>DrawMap</b> function, the changes were made to the way the map is displayed. The previous version of the function used <b>hb_DispOutAt()</b> to display each element of the map one by one at its corresponding position on the screen. The new version of the function makes use of an <b>IIF</b> statement to check if the current element of the map is a dot <b>(.)</b>, and if it is, it will replace it with a blank space <b>( )</b>. This is done so that the dots are not permanently removed from the map after the player has passed over them.
 </p>
 
 ![ Screenshot Windows ](Text-based-game-development/docs/text-based_3.png )
@@ -536,8 +536,102 @@ It's important to note that the above code snippet is just an example and you ma
 
 ![ Screenshot Windows ](Text-based-game-development/docs/text-based_4.png )
 
+<p align="justify">
+Here's an example of how you could modify the existing code to add a timer for the player and end the game after all dots have been collected:
+</b>
+
+> - [text-based_5.prg](Text-based-game-development/text-based_5.prg)
+
+``` harbour
+LOCAL nStartTime, nDotsRemaining
+
+nStartTime := hb_MilliSeconds()
+nDotsRemaining := CountDots( aMap )
+
+WHILE( nLives > 0 )
+
+   IF aMap[ nPlayerY ][ nPlayerX ] == "."
+      aMap[ nPlayerY ][ nPlayerX ] := " "
+      nDotsRemaining -= 1
+   ENDIF
+
+   IF nDotsRemaining == 0
+      Alert( "You won!" )
+      EXIT
+   ENDIF
+
+   IF hb_MilliSeconds() - nStartTime > 30000
+      Alert( "Time's up!" )
+      EXIT
+   ENDIF
+
+ENDDO
+
+FUNCTION CountDots( aMap )
+
+   LOCAL nDots, nX, nY
+
+   nDots := 0
+   FOR nY := 1 TO Len( aMap )
+      FOR nX := 1 TO Len( aMap[ nY ] )
+         IF aMap[ nY ][ nX ] == "."
+            nDots += 1
+         ENDIF
+      NEXT
+   NEXT
+
+   RETURN nDots
+```
+
+<p align="justify">
+You can adjust the time limit to any value you want by changing the number in <b>hb_MilliSeconds() - nStartTime > 30000</b> to the number of milliseconds you want the limit to be.
+</p>
+
+<p align="justify">
+The code you've provided keeps track of the time it takes the player to collect all the dots on the map by using the <b>hb_Milliseconds()</b> function to get the current time when the game starts, and then again after all the dots have been collected. The difference between these two times is the total time it took the player to collect all the dots, which is then displayed to the player using the <>hb_DispOutAt()</b> function.
+The game will end after the player collects all the dots.
+</p>
+
+<p align="justify">
+The modified code includes a timer that starts when the game begins and lasts for 30 seconds. The game ends either when the player collects all the dots, or when the time runs out. The code includes a new variable, <b>nStartTime</b>, that keeps track of the starting time of the game using the <b>hb_MilliSeconds()</b> function. The <b>nDotsRemaining</b> variable keeps track of the number of dots remaining on the map. This is used to check if all the dots have been collected and the game should end. Inside the main game loop, an additional check is added to see if the time has run out, and if so, the game will end with a message "Time's up!". Additionally, a new function <b>CountDots()</b> is added, which counts the number of dots in the map.
+</p>
+
+<p align="justify">
+At the end of this example, we make some changes to the code:
+</p>
+
+``` harbour
+LOCAL nKey, aMap, nPlayerX, nPlayerY, nLives, lQuit := .F., nStartTime, nDotsRemaining
+
+/* ... */
+
+   WHILE( nLives > 0 .AND. ! lQuit )
+
+/* ... */
+
+      IF nDotsRemaining == 0
+         DrawMap( aMap, nPlayerX, nPlayerY )
+         Alert( "You won!" )
+         lQuit := .T.
+      ENDIF
+
+/* ... */
+```
+
+<p align="justify">
+This creates a new local variable named lQuit which is initially set to false. The <b>WHILE</b> loop that controls the game logic now also checks if <b>lQuit</b> is true in addition to checking if the player has any remaining lives. When the player collects all the dots, the code will set <b>lQuit</b> to true and the game will exit the <b>WHILE</b> loop.
+</p>
+
+<p align="justify">
+In this way, the code will run the <b>DrawMap()</b> function one last time, to show the player where they are in the map, when they collect all the dots.
+</p>
+
+![ Screenshot Windows ](Text-based-game-development/docs/text-based_5.png )
+
 --------------------------------------------------------------------------------
 <p>
+
 <a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
 </p>
 
+--------------------------------------------------------------------------------
