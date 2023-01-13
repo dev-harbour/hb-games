@@ -628,8 +628,38 @@ In this way, the code will run the <b>DrawMap()</b> function one last time, to s
 
 ![ Screenshot Windows ](Text-based-game-development/docs/text-based_5.png )
 
+<p align="justify">
+You can use the <b>hb_DispOutAt()</b> function to display the elapsed time in the game. You can do this by first creating a variable to store the start time of the game, and then, inside the while loop, you can calculate the elapsed time by subtracting the start time from the current time using the <b>hb_MilliSeconds()</b> function. Finally, you can use the hb_DispOutAt() function to display the elapsed time on the screen. Here is an example of how you can do this:
+</p>
+
+``` harbour
+LOCAL nKey, aMap, nPlayerX, nPlayerY, nLives, lQuit := .F., nStartTime, nDotsRemaining, nElapsedTime
+
+/* ... */
+
+nStartTime := hb_MilliSeconds()
+
+/* ... */
+
+WHILE( nLives > 0 .AND. ! lQuit )
+
+/* ... */
+
+nElapsedTime := hb_MilliSeconds() - nStartTime
+hb_DispOutAt( 11, 1, "Time: " +  Transform( nElapsedTime, "9,999 999" ) + " s" )
+
+/* ... */
+```
+<p align="justify">
+In this example, the variable <b>nElapsedTime</b> is used to store the elapsed time in the game, which is calculated by subtracting the start time from the current time using the <>hb_MilliSeconds()</b> function. The elapsed time is then displayed on the screen using the <b>hb_DispOutAt()</b> function. This will allow the player to see how much time is left during the game.
+</p>
+
+![ Screenshot Windows ](Text-based-game-development/docs/text-based_6.png )
+
+<p align="justify">
+Summary, in this code, we created a simple game where the player's task is to collect all the dots <b>"."</b> from the player board. The player is controlled using the arrow keys and the game ends either when the player collects all the dots or runs out of lives. The game also has a time limit of 30 seconds, after which the game will end. The code uses a two-dimensional array to represent the game board, and the array elements are displayed on the screen using the <b>hb_DispOutAt()</b> function. The player's position is represented by two variables, <b>nPlayerX</b> and <b>nPlayerY</b>, and the player's lives are represented by the variable nLives. The player's movement is controlled by the <b>Inkey()</b> function, which reads the arrow keys pressed by the player. The game also displays the elapsed time and the remaining lives on the screen. The game also checks if the player has collected all the dots, and if so, the game ends with a message <b>"You wo!"</b>
+</p>
 --------------------------------------------------------------------------------
-<p>
 
 <a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
 </p>
