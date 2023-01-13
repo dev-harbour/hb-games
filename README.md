@@ -375,7 +375,7 @@ By enlarging the <b>aMap</b> array, you can create larger and more complex level
 You can add a check within the movement logic, when the player moves to a new position, check if the character is on a "." <b>If</b> it is, then you can remove it from the game board. One way to do this is to change the <b>"."</b> to a blank space <b>" "</b> or another character that represents an empty space. For example, you can add this check within the <b>ELSE</b> block of the movement logic:
 </p>
 
-> - [text-based_2.prg](Text-based-game-development/text-based_3.prg)
+> - [text-based_3.prg](Text-based-game-development/text-based_3.prg)
 
 ``` harbour
 WHILE( nLives > 0 )
