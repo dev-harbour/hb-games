@@ -710,6 +710,14 @@ Adding a time limit for the game, and the game will end if the player does not c
 --------------------------------------------------------------------------------
 
 <a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
-</p>
 
 --------------------------------------------------------------------------------
+
+<p align="center">
+"Copyright 2017-2023 Rafał Jopek"
+</p>
+
+<p align="center">
+<a href="https://harbour.pl/">harbour.pl</a>
+</p>
+
