@@ -102,7 +102,7 @@ Handling user input is an important aspect of creating a text-based game using t
 <ul>
 <li>
 <p align="justify">
-Keyboard input: One of the most basic ways to handle user input is to use the keyboard. Harbour provides several built-in functions, such as GET and <b>Inkey</b>, that can be used to capture and process keyboard input.
+Keyboard input: One of the most basic ways to handle user input is to use the keyboard. Harbour provides several built-in functions, such as GET and <b>Inkey()</b>, that can be used to capture and process keyboard input.
 </p>
 </li>
 
@@ -268,7 +268,7 @@ The game loop is implemented in the while loop, that iterates continuously until
 </p>
 
 <p align="justify">
-The game loop also captures input from the keyboard using the <b>Inkey</b> function, which waits for 1 second for an input. If an input is captured, the program checks if it is an arrow key and updates the player's position accordingly.
+The game loop also captures input from the keyboard using the <b>Inkey()</b> function, which waits for 1 second for an input. If an input is captured, the program checks if it is an arrow key and updates the player's position accordingly.
 </p>
 
 <p align="justify">
@@ -588,7 +588,7 @@ You can adjust the time limit to any value you want by changing the number in <b
 </p>
 
 <p align="justify">
-The code you've provided keeps track of the time it takes the player to collect all the dots on the map by using the <b>hb_Milliseconds()</b> function to get the current time when the game starts, and then again after all the dots have been collected. The difference between these two times is the total time it took the player to collect all the dots, which is then displayed to the player using the <>hb_DispOutAt()</b> function.
+The code you've provided keeps track of the time it takes the player to collect all the dots on the map by using the <b>hb_Milliseconds()</b> function to get the current time when the game starts, and then again after all the dots have been collected. The difference between these two times is the total time it took the player to collect all the dots, which is then displayed to the player using the <b>hb_DispOutAt()</b> function.
 The game will end after the player collects all the dots.
 </p>
 
@@ -710,7 +710,7 @@ Adding a time limit for the game, and the game will end if the player does not c
 
 --------------------------------------------------------------------------------
 
-<a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
+<a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through PayPal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
 
 --------------------------------------------------------------------------------
 
