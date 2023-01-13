@@ -707,6 +707,7 @@ Adding a feature to customize the appearance of the player character.
 Adding a time limit for the game, and the game will end if the player does not complete the level within a certain time.
 </li>
 </ul>
+
 --------------------------------------------------------------------------------
 
 <a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
