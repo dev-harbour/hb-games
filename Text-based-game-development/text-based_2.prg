@@ -55,7 +55,6 @@ PROCEDURE Main()
          ELSE
             nPlayerX := nPlayerX + 1
          ENDIF
-
       ENDIF
    ENDDO
 
