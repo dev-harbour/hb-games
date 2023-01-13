@@ -457,7 +457,7 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
          IF nX == nPlayerX .AND. nY == nPlayerY
             hb_DispOutAt( nY - 1, nX - 1, "P", 0x22 )
          ELSE
-            IF aMap[ nY ][ nX ] == "." AND nX == nPlayerX AND nY == nPlayerY
+            IF aMap[ nY ][ nX ] == "." .AND. nX == nPlayerX .AND. nY == nPlayerY
                hb_DispOutAt( nY - 1, nX - 1, " ", 0x7 )
             ELSE
                hb_DispOutAt( nY - 1, nX - 1, aMap[ nY ][ nX ], 0x7 )
