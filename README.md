@@ -468,6 +468,9 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
    RETURN NIL
 ```
 
+<p align="justify">
+Regarding the <b>DrawMap</b> function, the changes were made to the way the map is displayed. The previous version of the function used <b>hb_DispOutAt</b> to display each element of the map one by one at its corresponding position on the screen. The new version of the function makes use of an <b>IIF</b> statement to check if the current element of the map is a dot <b>(.)</b>, and if it is, it will replace it with a blank space <b>( )</b>. This is done so that the dots are not permanently removed from the map after the player has passed over them.
+</p>
 ![Windows](Text-based-game-development/docs/text-based_3.png )
 
 <p align="justify">
