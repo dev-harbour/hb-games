@@ -199,7 +199,7 @@ It's also important to keep in mind that the game loop should be optimized for p
 
 ## Simple examples of text-based games
 
-> - text-based_1.prg
+> - [text-based_1.prg](Text-based-game-development/text-based_1.prg)
 
 ``` harbour
 #include "inkey.ch"
@@ -275,7 +275,7 @@ The game loop also captures input from the keyboard using the <b>Inkey</b> funct
 The game allows the player to move on the map using the arrow keys, and the player character is represented by a special character.
 </p>
 
-> - text-based_2.prg
+> - [text-based_2.prg](Text-based-game-development/text-based_2.prg)
 
 ``` harbour
 #include "inkey.ch"
@@ -335,7 +335,6 @@ PROCEDURE Main()
          ELSE
             nPlayerX := nPlayerX + 1
          ENDIF
-
       ENDIF
    ENDDO
 
@@ -371,6 +370,109 @@ With this code, the game will display the number of lives that the player has le
 <p align="justify">
 By enlarging the <b>aMap</b> array, you can create larger and more complex levels for the game, making it more interesting and challenging for the player.
 </p>
+
+<p align="justify">
+You can add a check within the movement logic, when the player moves to a new position, check if the character is on a "." <b>If</b> it is, then you can remove it from the game board. One way to do this is to change the <b>"."</b> to a blank space <b>" "</b> or another character that represents an empty space. For example, you can add this check within the <b>ELSE</b> block of the movement logic:
+</p>
+
+> - [text-based_2.prg](Text-based-game-development/text-based_3.prg)
+
+``` harbour
+WHILE( nLives > 0 )
+
+   DrawMap( aMap, nPlayerX, nPlayerY )
+
+   hb_DispOutAt( 20, 1, "Lives: " + Str( nLives ) )
+
+   nKey := Inkey( 1 )
+
+   IF nKey == K_UP
+      IF aMap[ nPlayerY - 1 ][ nPlayerX ] == "#"
+         nLives -= 1
+         hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+      ELSE
+         nPlayerY := nPlayerY - 1
+      ENDIF
+   ELSEIF nKey == K_DOWN
+      IF aMap[ nPlayerY + 1 ][ nPlayerX ] == "#"
+         nLives -= 1
+         hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+      ELSE
+         nPlayerY := nPlayerY + 1
+      ENDIF
+   ELSEIF nKey == K_LEFT
+      IF aMap[ nPlayerY ][ nPlayerX - 1 ] == "#"
+         nLives -= 1
+         hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+      ELSE
+         nPlayerX := nPlayerX - 1
+      ENDIF
+   ELSEIF nKey == K_RIGHT
+      IF aMap[ nPlayerY ][ nPlayerX + 1 ] == "#"
+         nLives -= 1
+         hb_DispOutAt( 22, 1, "You hit a wall, you lost 1 life" )
+      ELSE
+         nPlayerX := nPlayerX + 1
+      ENDIF
+   ENDIF
+
+   IF aMap[ nPlayerY ][ nPlayerX ] == "."
+      aMap[ nPlayerY ][ nPlayerX ] := " "
+   ENDIF
+
+ENDDO
+```
+
+<p align="justify">
+You would need to make a similar modification in the <b>DrawMap()</b> function so that it knows how to draw the blank space or other character you choose to represent an empty space.
+</p>
+
+<p align="justify">
+To remove a <b>.</b> from the game board when the player character moves through it, you can add a check in the code that updates the player's position. For example, you can add the following code after updating the player's position:
+</p>
+
+``` harbour
+IF aMap[ nPlayerY ][ nPlayerX ] == "."
+   aMap[ nPlayerY ][ nPlayerX ] := " "
+ENDIF
+```
+
+<p align="justify">
+This checks if the player's current position is a <b>.</b>, and if it is, it changes it to a space character <b>" "</b>. This effectively removes the <b>.</b> from the game board.
+</p>
+
+<p align="justify">
+You can add this check in each of the four <b>ELSE</b> blocks that update the player's position, depending on the key pressed.
+</p>
+
+<p align="justify">
+<b>aMap</b> and <b>nPlayerX</b> and <b>nPlayerY</b> which represent the current position of the player on the game board. The function uses nested for loops to iterate through each element of the <b>aMap</b> array, and for each element it checks if the current coordinates match the player's coordinates. If they match, it outputs the player character <b>"P"</b> with a specific color code 0x22. If the current element is a <b>"."</b> it will output an empty space <b>" "</b> with color code 0x7. Else, it will output the element with color code 0x7. It then returns <b>NIL</b>. This function is used to update the game board with the player's current position and display any changes made to the board.
+</p>
+
+``` harbour
+FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
+   LOCAL nX, nY
+   FOR nY := 1 TO Len( aMap )
+      FOR nX := 1 TO Len( aMap[ nY ] )
+         IF nX == nPlayerX .AND. nY == nPlayerY
+            hb_DispOutAt( nY - 1, nX - 1, "P", 0x22 )
+         ELSE
+            IF aMap[ nY ][ nX ] == "." AND nX == nPlayerX AND nY == nPlayerY
+               hb_DispOutAt( nY - 1, nX - 1, " ", 0x7 )
+            ELSE
+               hb_DispOutAt( nY - 1, nX - 1, aMap[ nY ][ nX ], 0x7 )
+            ENDIF
+         ENDIF
+      NEXT
+   NEXT
+   RETURN NIL
+```
+
+![Windows](Text-based-game-development/docs/text-based_3.png )
+
+<p align="justify">
+It is important to note that this is just one possible way to implement this feature, and you may want to adjust it to suit the needs of your specific game.
+<p>
 
 ---
 
