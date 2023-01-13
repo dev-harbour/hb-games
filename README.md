@@ -659,6 +659,54 @@ In this example, the variable <b>nElapsedTime</b> is used to store the elapsed t
 <p align="justify">
 Summary, in this code, we created a simple game where the player's task is to collect all the dots <b>"."</b> from the player board. The player is controlled using the arrow keys and the game ends either when the player collects all the dots or runs out of lives. The game also has a time limit of 30 seconds, after which the game will end. The code uses a two-dimensional array to represent the game board, and the array elements are displayed on the screen using the <b>hb_DispOutAt()</b> function. The player's position is represented by two variables, <b>nPlayerX</b> and <b>nPlayerY</b>, and the player's lives are represented by the variable nLives. The player's movement is controlled by the <b>Inkey()</b> function, which reads the arrow keys pressed by the player. The game also displays the elapsed time and the remaining lives on the screen. The game also checks if the player has collected all the dots, and if so, the game ends with a message <b>"You wo!"</b>
 </p>
+
+--------------------------------------------------------------------------------
+
+<p align="justify">
+Here are a few examples of changes that could be made to the game:
+</p>
+
+<ul>
+<li>
+Adding a scoring system, where the player earns points for collecting dots and loses points for hitting walls.
+</li>
+
+<li>
+Adding power-ups, such as extra lives or a temporary invincibility mode.
+</li>
+
+<li>
+Adding enemies that move around the map and must be avoided.
+</li>
+
+<li>
+Adding multiple levels, with different maps and increasing difficulty.
+</li>
+
+<li>
+Adding a pause feature, allowing the player to pause the game and resume it later.
+</li>
+
+<li>
+Adding a high scores list, displaying the top scores achieved by players.
+</li>
+
+<li>
+Adding sound effects and background music to enhance the game's atmosphere.
+</li>
+
+<li>
+Adding a two-player mode, where two players can play on the same keyboard.
+</li>
+
+<li>
+Adding a feature to customize the appearance of the player character.
+</li>
+
+<li>
+Adding a time limit for the game, and the game will end if the player does not complete the level within a certain time.
+</li>
+</ul>
 --------------------------------------------------------------------------------
 
 <a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
