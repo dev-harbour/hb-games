@@ -66,7 +66,7 @@ PROCEDURE Main()
 
       /* check time limit */
       IF hb_MilliSeconds() - nStartTime > nTimeLimit
-         Alert("Time's up!")
+         Alert( "Time's up!" )
          nLives := 0
       ENDIF
 
