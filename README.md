@@ -258,7 +258,7 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
    RETURN NIL
 ```
 
-![Windows](Text-based-game-development/docs/text-based_1.png )
+![ Screenshot Windows ](Text-based-game-development/docs/text-based_1.png )
 
 <p align="justify">
 This code is a simple text-based game written in the Harbour programming language. The game uses an array, <b>aMap</b>, to represent the map of the game world, and assigns characters to different positions on the map to represent different types of locations (e.g. walls represented by "#" and open spaces represented by "." ). The player's position is tracked using the variables <b>nPlayerX</b> and <b>nPlayerY</b>, which are initially set to 2,2.
@@ -361,7 +361,7 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
    RETURN NIL
 ```
 
-![Windows](Text-based-game-development/docs/text-based_2.png )
+![ Screenshot Windows ](Text-based-game-development/docs/text-based_2.png )
 
 <p align="justify">
 With this code, the game will display the number of lives that the player has left and it will end the game when the player loses all lives. The player will lose 1 live every time he hits a wall and the game over message will be shown. It's important to note that the code is a simple example of how you could implement a text-based game using Harbour, it has limitations and could be improved to make it more interesting, complex and fun!
@@ -472,14 +472,71 @@ FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
 Regarding the <b>DrawMap</b> function, the changes were made to the way the map is displayed. The previous version of the function used <b>hb_DispOutAt</b> to display each element of the map one by one at its corresponding position on the screen. The new version of the function makes use of an <b>IIF</b> statement to check if the current element of the map is a dot <b>(.)</b>, and if it is, it will replace it with a blank space <b>( )</b>. This is done so that the dots are not permanently removed from the map after the player has passed over them.
 </p>
 
-![Windows](Text-based-game-development/docs/text-based_3.png )
+![ Screenshot Windows ](Text-based-game-development/docs/text-based_3.png )
 
 <p align="justify">
 It is important to note that this is just one possible way to implement this feature, and you may want to adjust it to suit the needs of your specific game.
 <p>
 
----
+<p align="justify">
+<b>​hb_MilliSeconds()</b> function to get the current time in milliseconds, and then compare it to a time limit. You can add a variable <b>nStartTime</b> to your code to store the starting time, and then check if the current time minus the start time is greater than your time limit. Here's an example of how you can add a time limit of 60 seconds to your code:
+</p>
 
+> - [text-based_4.prg](Text-based-game-development/text-based_4.prg)
+
+
+``` harbour
+PROCEDURE Main()
+
+   LOCAL nKey, aMap, nPlayerX, nPlayerY, nLives, nStartTime, nTimeLimit
+
+   aMap := { /* map */ }
+   nPlayerX := 2
+   nPlayerY := 2
+   nLives := 3
+   nTimeLimit := 30000 // 60 seconds in milliseconds
+
+   nStartTime := hb_MilliSeconds()
+
+   WHILE( nLives > 0 )
+
+      DrawMap( aMap, nPlayerX, nPlayerY )
+      hb_DispOutAt( 20, 1, "Lives: " + Str( nLives ) )
+
+      nKey := Inkey( 1 )
+
+      /* move player */
+
+      IF aMap[ nPlayerY ][ nPlayerX ] == "."
+         aMap[ nPlayerY ][ nPlayerX ] := " "
+      ENDIF
+
+      /* check time limit */
+      IF hb_MilliSeconds() - nStartTime > nTimeLimit
+         Alert("Time's up!")
+         nLives := 0
+      ENDIF
+
+   ENDDO
+
+   IF nLives == 0
+      Alert( "Game Over!" )
+   ENDIF
+
+   RETURN
+
+FUNCTION DrawMap( aMap, nPlayerX, nPlayerY )
+   /* ... */
+   RETURN NIL
+```
+
+<p align="justify">
+It's important to note that the above code snippet is just an example and you may need to adjust it to fit the specific requirements of your game.
+</p>
+
+![ Screenshot Windows ](Text-based-game-development/docs/text-based_4.png )
+
+--------------------------------------------------------------------------------
 <p>
 <a href="https://www.paypal.me/rafaljopek?locale.x=pl_PL/">If you enjoyed this instruction, please support the project by making a donation through Paypal.<br> Your support will help to ensure that this instruction can continue to be developed and updated.</a>
 </p>
